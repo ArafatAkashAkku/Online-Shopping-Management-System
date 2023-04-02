@@ -4,14 +4,11 @@
   
         <ul class="nav">
             <li class="dropdown menu-item">
-              <?php $sql=mysqli_query($con,"select id,categoryName  from category");
-while($row=mysqli_fetch_array($sql))
-{
-    ?>
-                <a href="category.php?cid=<?php echo $row['id'];?>" class="dropdown-toggle"><i class="icon fa fa-desktop fa-fw"></i>
-                <?php echo $row['categoryName'];?></a>
-                <?php }?>
-                        
+
+                <a href="#" ><i class="icon fa fa-desktop fa-fw"></i>Books</a>
+                <a href="#" ><i class="icon fa fa-desktop fa-fw"></i>Electronics</a>
+                <a href="#" ><i class="icon fa fa-desktop fa-fw"></i>Furniture</a>
+                <a href="#" ><i class="icon fa fa-desktop fa-fw"></i>Fashion</a>                        
 </li>
 </ul>
     </nav>
