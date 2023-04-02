@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 14, 2021 at 08:32 AM
--- Server version: 10.4.17-MariaDB
--- PHP Version: 8.0.0
+-- Generation Time: Apr 02, 2023 at 03:11 PM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,29 +18,8 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `aman`
+-- Database: `ecommerce`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `admin`
---
-
-CREATE TABLE `admin` (
-  `id` int(11) NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `creationDate` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updationDate` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `admin`
---
-
-INSERT INTO `admin` (`id`, `username`, `password`, `creationDate`, `updationDate`) VALUES
-(1, 'admin', 'f925916e2754e5e03f75dd58a5733251', '2017-01-24 16:21:18', '21-06-2018 08:27:55 PM');
 
 -- --------------------------------------------------------
 
@@ -54,7 +33,7 @@ CREATE TABLE `category` (
   `categoryDescription` longtext DEFAULT NULL,
   `creationDate` timestamp NOT NULL DEFAULT current_timestamp(),
   `updationDate` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `category`
@@ -65,84 +44,6 @@ INSERT INTO `category` (`id`, `categoryName`, `categoryDescription`, `creationDa
 (4, 'Electronics', 'Electronic Products', '2017-01-24 19:19:32', ''),
 (5, 'Furniture', 'test', '2017-01-24 19:19:54', ''),
 (6, 'Fashion', 'Fashion', '2017-02-20 19:18:52', '');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `orders`
---
-
-CREATE TABLE `orders` (
-  `id` int(11) NOT NULL,
-  `userId` int(11) DEFAULT NULL,
-  `productId` varchar(255) DEFAULT NULL,
-  `quantity` int(11) DEFAULT NULL,
-  `orderDate` timestamp NOT NULL DEFAULT current_timestamp(),
-  `paymentMethod` varchar(50) DEFAULT NULL,
-  `orderStatus` varchar(55) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `orders`
---
-
-INSERT INTO `orders` (`id`, `userId`, `productId`, `quantity`, `orderDate`, `paymentMethod`, `orderStatus`) VALUES
-(1, 1, '3', 1, '2017-03-07 19:32:57', 'COD', NULL),
-(3, 1, '4', 1, '2017-03-10 19:43:04', 'Debit / Credit card', 'Delivered'),
-(4, 1, '17', 1, '2017-03-08 16:14:17', 'COD', 'in Process'),
-(5, 1, '3', 1, '2017-03-08 19:21:38', 'COD', NULL),
-(6, 1, '4', 1, '2017-03-08 19:21:38', 'COD', NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `ordertrackhistory`
---
-
-CREATE TABLE `ordertrackhistory` (
-  `id` int(11) NOT NULL,
-  `orderId` int(11) DEFAULT NULL,
-  `status` varchar(255) DEFAULT NULL,
-  `remark` mediumtext DEFAULT NULL,
-  `postingDate` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `ordertrackhistory`
---
-
-INSERT INTO `ordertrackhistory` (`id`, `orderId`, `status`, `remark`, `postingDate`) VALUES
-(1, 3, 'in Process', 'Order has been Shipped.', '2017-03-10 19:36:45'),
-(2, 1, 'Delivered', 'Order Has been delivered', '2017-03-10 19:37:31'),
-(3, 3, 'Delivered', 'Product delivered successfully', '2017-03-10 19:43:04'),
-(4, 4, 'in Process', 'Product ready for Shipping', '2017-03-10 19:50:36');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `productreviews`
---
-
-CREATE TABLE `productreviews` (
-  `id` int(11) NOT NULL,
-  `productId` int(11) DEFAULT NULL,
-  `quality` int(11) DEFAULT NULL,
-  `price` int(11) DEFAULT NULL,
-  `value` int(11) DEFAULT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `summary` varchar(255) DEFAULT NULL,
-  `review` longtext DEFAULT NULL,
-  `reviewDate` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `productreviews`
---
-
-INSERT INTO `productreviews` (`id`, `productId`, `quality`, `price`, `value`, `name`, `summary`, `review`, `reviewDate`) VALUES
-(2, 3, 4, 5, 5, 'Anuj Kumar', 'BEST PRODUCT FOR ME :)', 'BEST PRODUCT FOR ME :)', '2017-02-26 20:43:57'),
-(3, 3, 3, 4, 3, 'Sarita pandey', 'Nice Product', 'Value for money', '2017-02-26 20:52:46'),
-(4, 3, 3, 4, 3, 'Sarita pandey', 'Nice Product', 'Value for money', '2017-02-26 20:59:19');
 
 -- --------------------------------------------------------
 
@@ -166,7 +67,7 @@ CREATE TABLE `products` (
   `productAvailability` varchar(255) DEFAULT NULL,
   `postingDate` timestamp NULL DEFAULT current_timestamp(),
   `updationDate` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `products`
@@ -205,7 +106,7 @@ CREATE TABLE `subcategory` (
   `subcategory` varchar(255) DEFAULT NULL,
   `creationDate` timestamp NULL DEFAULT current_timestamp(),
   `updationDate` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `subcategory`
@@ -224,111 +125,14 @@ INSERT INTO `subcategory` (`id`, `categoryid`, `subcategory`, `creationDate`, `u
 (11, 5, 'Dining Tables', '2017-02-04 04:37:51', ''),
 (12, 6, 'Men Footwears', '2017-03-10 20:12:59', '');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `userlog`
---
-
-CREATE TABLE `userlog` (
-  `id` int(11) NOT NULL,
-  `userEmail` varchar(255) DEFAULT NULL,
-  `userip` binary(16) DEFAULT NULL,
-  `loginTime` timestamp NULL DEFAULT current_timestamp(),
-  `logout` varchar(255) DEFAULT NULL,
-  `status` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `userlog`
---
-
-INSERT INTO `userlog` (`id`, `userEmail`, `userip`, `loginTime`, `logout`, `status`) VALUES
-(24, 'aman@digihand.co.in', 0x3a3a3100000000000000000000000000, '2021-03-14 07:26:52', NULL, 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `users`
---
-
-CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `contactno` bigint(11) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
-  `shippingAddress` longtext DEFAULT NULL,
-  `shippingState` varchar(255) DEFAULT NULL,
-  `shippingCity` varchar(255) DEFAULT NULL,
-  `shippingPincode` int(11) DEFAULT NULL,
-  `billingAddress` longtext DEFAULT NULL,
-  `billingState` varchar(255) DEFAULT NULL,
-  `billingCity` varchar(255) DEFAULT NULL,
-  `billingPincode` int(11) DEFAULT NULL,
-  `regDate` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updationDate` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id`, `name`, `email`, `contactno`, `password`, `shippingAddress`, `shippingState`, `shippingCity`, `shippingPincode`, `billingAddress`, `billingState`, `billingCity`, `billingPincode`, `regDate`, `updationDate`) VALUES
-(4, 'aman', 'aman@digihand.co.in', 8058596008, '73b25522615dac9cfd289ee35faef4ef', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-14 07:26:38', NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `wishlist`
---
-
-CREATE TABLE `wishlist` (
-  `id` int(11) NOT NULL,
-  `userId` int(11) DEFAULT NULL,
-  `productId` int(11) DEFAULT NULL,
-  `postingDate` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `wishlist`
---
-
-INSERT INTO `wishlist` (`id`, `userId`, `productId`, `postingDate`) VALUES
-(1, 1, 0, '2017-02-27 18:53:17');
-
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `admin`
---
-ALTER TABLE `admin`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `category`
 --
 ALTER TABLE `category`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `orders`
---
-ALTER TABLE `orders`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `ordertrackhistory`
---
-ALTER TABLE `ordertrackhistory`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `productreviews`
---
-ALTER TABLE `productreviews`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -344,56 +148,14 @@ ALTER TABLE `subcategory`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `userlog`
---
-ALTER TABLE `userlog`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `wishlist`
---
-ALTER TABLE `wishlist`
-  ADD PRIMARY KEY (`id`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
-
---
--- AUTO_INCREMENT for table `admin`
---
-ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `orders`
---
-ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `ordertrackhistory`
---
-ALTER TABLE `ordertrackhistory`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `productreviews`
---
-ALTER TABLE `productreviews`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -406,24 +168,6 @@ ALTER TABLE `products`
 --
 ALTER TABLE `subcategory`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
---
--- AUTO_INCREMENT for table `userlog`
---
-ALTER TABLE `userlog`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `wishlist`
---
-ALTER TABLE `wishlist`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
