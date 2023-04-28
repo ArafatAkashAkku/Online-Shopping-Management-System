@@ -2,6 +2,28 @@
 session_start();
 error_reporting(0);
 include("include/config.php");
+if (isset($_POST['submit'])) {
+	$username = $_POST['username'];
+	$password = md5($_POST['password']);
+	$ret = mysqli_query($con, "SELECT * FROM admin WHERE username='$username' and password='$password'");
+	$num = mysqli_fetch_array($ret);
+	if ($num > 0) {
+		$extra = "change-password.php"; //
+		$_SESSION['alogin'] = $_POST['username'];
+		$_SESSION['id'] = $num['id'];
+		$host = $_SERVER['HTTP_HOST'];
+		$uri = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+		header("location:http://$host$uri/$extra");
+		exit();
+	} else {
+		$_SESSION['errmsg'] = "Invalid username or password";
+		$extra = "index.php";
+		$host  = $_SERVER['HTTP_HOST'];
+		$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+		header("location:http://$host$uri/$extra");
+		exit();
+	}
+}
 ?>
 
 <!DOCTYPE html>
@@ -14,8 +36,10 @@ include("include/config.php");
 	<link type="text/css" href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<link type="text/css" href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
 	<link type="text/css" href="css/theme.css" rel="stylesheet">
+	<link type="text/css" href="images/icons/css/font-awesome.css" rel="stylesheet">
+	<link type="text/css" href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600' rel='stylesheet'>
 	<!-- Favicon -->
-	<link rel="shortcut icon" href="../assets/images/favicon.ico">
+	<link rel="shortcut icon" href="assets/images/favicon.ico">
 </head>
 
 <body>
@@ -27,7 +51,7 @@ include("include/config.php");
 					<i class="icon-reorder shaded"></i>
 				</a>
 
-				<a class="brand" href="http://localhost/Ecommerce/">
+				<a class="brand" href="index.html">
 					Shopping Portal | Admin
 				</a>
 
@@ -35,7 +59,7 @@ include("include/config.php");
 
 					<ul class="nav pull-right">
 
-						<li><a href="http://localhost/Ecommerce/">
+						<li><a href="http://localhost/shopping/">
 								Back to Portal
 
 							</a></li>
@@ -59,7 +83,7 @@ include("include/config.php");
 						<div class="module-head">
 							<h3>Sign In</h3>
 						</div>
-						<span style="color:red;"></span>
+						<span style="color:red;"><?php echo htmlentities($_SESSION['errmsg']); ?><?php echo htmlentities($_SESSION['errmsg'] = ""); ?></span>
 						<div class="module-body">
 							<div class="control-group">
 								<div class="controls row-fluid">
@@ -93,4 +117,7 @@ include("include/config.php");
 			<b class="copyright">&copy; 2023 Shopping Portal </b> All rights reserved.
 		</div>
 	</div>
+	<script src="scripts/jquery-1.9.1.min.js" type="text/javascript"></script>
+	<script src="scripts/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
+	<script src="bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 </body>
