@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 05, 2023 at 10:58 PM
+-- Generation Time: May 20, 2023 at 09:08 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -224,6 +224,27 @@ INSERT INTO `products` (`id`, `category`, `subCategory`, `productName`, `product
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `seller`
+--
+
+CREATE TABLE `seller` (
+  `id` int(11) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `creationDate` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updationDate` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `seller`
+--
+
+INSERT INTO `seller` (`id`, `username`, `password`, `creationDate`, `updationDate`) VALUES
+(1, 'seller', '64c9ac2bb5fe46c3ac32844bb97be6bc', '2023-01-24 10:21:18', '20-05-2023 12:29:46 PM');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `subcategory`
 --
 
@@ -267,15 +288,6 @@ CREATE TABLE `userlog` (
   `status` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
---
--- Dumping data for table `userlog`
---
-
-INSERT INTO `userlog` (`id`, `userEmail`, `userip`, `loginTime`, `logout`, `status`) VALUES
-(46, 'arafatakash5@gmail.com', 0x3a3a3100000000000000000000000000, '2023-04-28 09:59:21', '28-04-2023 03:59:27 PM', 1),
-(47, 'arafatakash5@gmail.com', 0x3a3a3100000000000000000000000000, '2023-04-28 17:22:45', NULL, 1),
-(48, 'arafatakash5@gmail.com', 0x3a3a3100000000000000000000000000, '2023-04-30 07:42:48', NULL, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -305,7 +317,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `contactno`, `password`, `shippingAddress`, `shippingState`, `shippingCity`, `shippingPincode`, `billingAddress`, `billingState`, `billingCity`, `billingPincode`, `regDate`, `updationDate`) VALUES
-(7, 'Md. Arafat Akas', 'arafatakash5@gmail.com', 179848094, '26a991ce0d465e436476785a8a254a6b', '', '', '', 1212, '', '', '', 0, '2023-04-17 08:50:52', NULL);
+(7, 'Md. Arafat Akash', 'arafatakash5@gmail.com', 1798480941, '26a991ce0d465e436476785a8a254a6b', '', '', '', 1212, '', '', '', 0, '2023-04-17 08:50:52', NULL);
 
 -- --------------------------------------------------------
 
@@ -361,6 +373,12 @@ ALTER TABLE `products`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `seller`
+--
+ALTER TABLE `seller`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `subcategory`
 --
 ALTER TABLE `subcategory`
@@ -398,7 +416,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `orders`
@@ -428,13 +446,13 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `subcategory`
 --
 ALTER TABLE `subcategory`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `userlog`
 --
 ALTER TABLE `userlog`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `users`
