@@ -1,0 +1,17 @@
+{
+    "lang": "en-us",
+    "name": "Online Shopping Mangement System",
+    "short_name": "OSMS",
+    "description": "An ecommerce platform",
+    "start_url": "/Ecommerce",
+    "background_color": "#2f3d58",
+    "theme_color": "#2f3d58",
+    "orientation": "any",
+    "display": "standalone",
+    "icons": [
+        {
+            "src": "/Ecommerce/HomePicture512.png",
+            "sizes": "512x512"
+        }
+    ]
+}
